@@ -10,6 +10,7 @@
 ---
 ## ⚙ Ferramentas e Dependências
 - [Material-UI (MUI)](https://mui.com/pt/)
+- [Axios](https://axios-http.com/ptbr/)
 
 ---
 ## 📑 Material Complementar

@@ -1,9 +1,11 @@
 import { Button } from "@mui/material";
 import { Teacher } from "../../@types/teacher";
+import { FormatService } from "../../services/FormatService";
 import { EmptyList, ItemDescription, ItemInformations, ItemList, ItemName, ItemPhoto, ItemValue, ListStyled } from "./List.style";
 
 interface ListProps {
     teachers: Teacher[],
+    onSelect: (teacher: Teacher) => void
 }
 
 const List = (props: ListProps) => {
@@ -21,14 +23,14 @@ const List = (props: ListProps) => {
                                 </ItemName>
 
                                 <ItemValue>
-                                    {teacher.valueHour.toLocaleString('pt-BR', { minimumFractionDigits: 2, style: 'currency', currency: 'BRL' })} por hora
+                                    {FormatService.monetaryValue(teacher.value_hour)} por hora
                                 </ItemValue>
 
                                 <ItemDescription>
-                                    {teacher.description}
+                                    {FormatService.limitDescription(teacher.description, 125)}
                                 </ItemDescription>
-                                <Button sx={{ width: '70%' }}>
-                                    Marcar Aula com {teacher.name}
+                                <Button onClick={() => props.onSelect(teacher)} sx={{ width: '70%' }} >
+                                    Marcar Aula com {FormatService.limitNameButton(teacher.name)}
                                 </Button>
                             </ItemInformations>
                         </ItemList>
